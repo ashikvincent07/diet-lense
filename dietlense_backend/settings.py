@@ -122,3 +122,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'diet_app.User'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'diet_app.backends.EmailBackend']
