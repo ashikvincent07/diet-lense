@@ -17,11 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from diet_app.views import UserRegisterView
+from diet_app import views
 from rest_framework.authtoken.views import ObtainAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', UserRegisterView.as_view()),
+    path('register/', views.UserRegisterView.as_view()),
     path('token/', ObtainAuthToken.as_view()),
+    path('profile/', views.UserProfileCreateView.as_view()),
+    path('profile/<int:pk>/', views.UserProfileRetrieveView.as_view()),
+    path('user/<int:pk>/', views.UserRetrieveView.as_view())
 ]

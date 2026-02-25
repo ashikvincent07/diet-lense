@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from diet_app.utililty_functions import daily_calorie_consumption
+
 
 
 class User(AbstractUser):
@@ -39,3 +41,11 @@ class UserProfile(models.Model):
     bmr = models.FloatField(null=True)
 
     owner = models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
+
+
+    def save(self, *args, **kwargs):
+
+        self.bmr = daily_calorie_consumption(self.weight, self.height,
+                                             self.age, self.gender, float(self.activity_level))
+        
+        super().save(*args, **kwargs)

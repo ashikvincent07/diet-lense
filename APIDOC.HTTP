@@ -4,12 +4,11 @@ POST http://127.0.0.1:8000/register/
 Content-Type: application/json
 
 {
-    "username":"user",
-    "email":"user@gmail.com",
+    "username":"user2",
+    "email":"user2@gmail.com",
     "password":"user123",
-    "phone":"9865342619"
+    "phone":"9865142619"
 }
-
 
 
 # api call for token
@@ -18,6 +17,52 @@ POST http://127.0.0.1:8000/token/
 Content-Type: application/json
 
 {
-    "username":"user@gmail.com",
+    "username":"user2@gmail.com",
     "password":"user123"
 }
+
+
+# api call for create profile
+###
+POST http://127.0.0.1:8000/profile/
+Content-Type: application/json
+Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+
+{
+    "height":178,
+    "weight":72,
+    "gender":"male",
+    "age":21
+}
+
+
+# api call for retrieve profile
+###
+GET http://127.0.0.1:8000/profile/1/
+Accept: application/json
+Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+
+
+# api call for update profile
+###
+PUT http://127.0.0.1:8000/profile/1/
+Content-Type: application/json
+Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+
+{
+  "height": 178.0,
+  "weight": 72.0,
+  "age": 21,
+  "gender": "male",
+  "activity_level": "1.2"
+}
+
+
+# api call for retrieve user 
+###
+GET http://127.0.0.1:8000/user/1/
+Accept: application/json
+Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+
+
+
