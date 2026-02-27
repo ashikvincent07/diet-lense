@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from django.shortcuts import get_object_or_404
 
-from diet_app.models import User, UserProfile
+from diet_app.models import User, UserProfile, FoodLog
 
 
 
@@ -21,11 +21,17 @@ class UserSerializer(serializers.ModelSerializer):
     
     def get_profile(self, obj):
 
-        profile = get_object_or_404(UserProfile, owner=obj)
+        try:
 
-        serializer_instance = UserProfileSerializer(profile)
+            profile = get_object_or_404(UserProfile, owner=obj)
 
-        return serializer_instance.data
+            serializer_instance = UserProfileSerializer(profile)
+
+            return serializer_instance.data
+        
+        except:
+
+            return "No Profile"
     
 
 
@@ -42,3 +48,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         return super().validate(attrs)
+    
+
+
+class FoodLogSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = FoodLog
+        fields = "__all__"
+        read_only_fields = ['owner', 'created_at']
+

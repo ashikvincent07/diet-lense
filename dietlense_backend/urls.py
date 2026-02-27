@@ -25,6 +25,10 @@ urlpatterns = [
     path('register/', views.UserRegisterView.as_view()),
     path('token/', ObtainAuthToken.as_view()),
     path('profile/', views.UserProfileCreateView.as_view()),
-    path('profile/<int:pk>/', views.UserProfileRetrieveView.as_view()),
-    path('user/<int:pk>/', views.UserRetrieveView.as_view())
+    path('profile/<int:pk>/', views.UserProfileRetrieveUpdateView.as_view()),
+    path('user/<int:pk>/', views.UserRetrieveView.as_view()),
+    path('foodlog/', views.FoodLogCreateListView.as_view()),
+    path('foodlog/<int:pk>/', views.FoodLogRetrieveUpdateDestroyView.as_view()),
+    path('summary/', views.SummaryView.as_view()),
+    path('get-diet-plan/', views.GetDietPlan.as_view()),
 ]

@@ -4,10 +4,10 @@ POST http://127.0.0.1:8000/register/
 Content-Type: application/json
 
 {
-    "username":"user2",
-    "email":"user2@gmail.com",
+    "username":"user3",
+    "email":"user3@gmail.com",
     "password":"user123",
-    "phone":"9865142619"
+    "phone":"98651426191"
 }
 
 
@@ -17,7 +17,7 @@ POST http://127.0.0.1:8000/token/
 Content-Type: application/json
 
 {
-    "username":"user2@gmail.com",
+    "username":"user3@gmail.com",
     "password":"user123"
 }
 
@@ -26,13 +26,13 @@ Content-Type: application/json
 ###
 POST http://127.0.0.1:8000/profile/
 Content-Type: application/json
-Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
 
 {
-    "height":178,
-    "weight":72,
-    "gender":"male",
-    "age":21
+    "height":168,
+    "weight":60,
+    "gender":"female",
+    "age":23
 }
 
 
@@ -40,7 +40,7 @@ Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
 ###
 GET http://127.0.0.1:8000/profile/1/
 Accept: application/json
-Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+Authorization: Token a5bf382bd469cef4a1fcbe97c8b0c6453ba20669
 
 
 # api call for update profile
@@ -63,6 +63,78 @@ Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
 GET http://127.0.0.1:8000/user/1/
 Accept: application/json
 Authorization: Token 055e04677102edbac28510aec7a15aba78b22c70
+
+
+# api call for create foodlog
+###
+POST http://127.0.0.1:8000/foodlog/
+Content-Type: application/json
+Authorization: Token a5bf382bd469cef4a1fcbe97c8b0c6453ba20669
+
+{
+    "name": "Cucumber Toast",
+    "meal_type": "breakfast",
+    "calories": 320,
+    "serving_size": "200g",
+    "notes": "Sourdough bread with poached egg"
+}
+
+
+
+# api call for list foodlogs
+###
+GET http://127.0.0.1:8000/foodlog/
+Accept: application/json
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
+
+
+# api call for retrieve food call
+###
+GET http://127.0.0.1:8000/foodlog/5/
+Accept: application/json
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
+
+
+# api call for update foodlog
+###
+PUT http://127.0.0.1:8000/foodlog/5/
+Content-Type: application/json
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
+
+{
+    "name": "Cucumber Toast",
+    "meal_type": "breakfast",
+    "calories": 320,
+    "serving_size": "200g",
+    "notes": "Sourdough bread with poached egg"
+}
+
+
+# api call for delete foodlog
+###
+DELETE http://127.0.0.1:8000/foodlog/5/
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
+
+
+# api call for summary
+###
+GET http://127.0.0.1:8000/summary/
+Accept: application/json
+Authorization: Token a5bf382bd469cef4a1fcbe97c8b0c6453ba20669
+
+
+# api call for diet plan 
+###
+POST http://127.0.0.1:8000/get-diet-plan/
+Content-Type: application/json
+Authorization: Token 7911473cc6d836d24f001a9f7365e6243a9672ec
+
+{
+    "goal" : "weight gain",
+    "target_weight" : 78,
+    "duration" : 3
+}
+
 
 
 
