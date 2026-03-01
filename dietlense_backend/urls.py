@@ -31,4 +31,5 @@ urlpatterns = [
     path('foodlog/<int:pk>/', views.FoodLogRetrieveUpdateDestroyView.as_view()),
     path('summary/', views.SummaryView.as_view()),
     path('get-diet-plan/', views.GetDietPlan.as_view()),
+    path('analyze-image/',views.AnalyzeFoodImageView.as_view()),
 ]

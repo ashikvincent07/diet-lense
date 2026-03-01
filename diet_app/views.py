@@ -11,6 +11,7 @@ from diet_app.serializers import UserSerializer, UserProfileSerializer, FoodLogS
 from diet_app.permissions import IsOwner, ProfileRequired
 from diet_app.models import UserProfile, User, FoodLog
 from diet_app.get_diet_plan import generate_kerala_diet_plan
+from diet_app.process_food_image import analyze_food
 
 
 
@@ -149,3 +150,22 @@ class GetDietPlan(APIView):
                                            target_weight=target_weight,duration=duration)
 
         return Response(data=result)
+    
+
+
+class AnalyzeFoodImageView(APIView):
+
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated,ProfileRequired]
+
+    def post(self,request,*args,**kwargs):
+
+        image = request.data.get("image")
+
+        data = analyze_food(image)
+
+        food_instance = FoodLog.objects.create(name=data.get("food_name"),calories=data.get("average_calorie"),owner=request.user)
+
+        serializer_instance = FoodLogSerializer(food_instance)
+
+        return Response(data=serializer_instance.data)
